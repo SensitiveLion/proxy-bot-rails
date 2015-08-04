@@ -1,0 +1,51 @@
+<div class="title">
+  <div class="panel">
+    <h1>The Proxy Bot</h1>
+    <h2>Schedule a bot to keep your hosts files up to date</h2>
+  </div>
+</div>
+<ul class="large-block-grid-2">
+  <li>
+    <div class="panel">
+      <h2>Schedule a job</h2>
+      <div class="row">
+        <div class="small-8 large-centered columns">
+          <%= form_for @schedule_new do |f| %>
+            <div class="field">
+              <%= f.label :interval, "How often" %>
+              <%= f.select :interval, options_for_interval %>
+            </div>
+            <div class="field">
+              <%= f.label :time, "When" %>
+              <%= f.time_field( :time ) %>
+            </div>
+            <div class="button round">
+              <%= f.submit "Schedule" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="panel">
+      <h2>Current schedule</h2>
+      <h3>Hosts-files will be pulled every</h3>
+      <h4>
+        <% if @schedule == nil %>
+          No schedule
+        <% else %>
+          <%= @schedule.interval %>
+        <% end %>
+      </h4>
+      <h3>at</h3>
+      <h4>
+        <% if @schedule == nil %>
+          No schedule
+        <% else %>
+          <%= @schedule.time %>
+        <% end %>
+      </h4>
+    </div>
+  </li>
+</ul>
