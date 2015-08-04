@@ -5,11 +5,10 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    @schedule = schedule.new(schedule_params)
-    @schedule.user = current_user
+    @schedule = Schedule.new(schedule_params)
     if @schedule.save
       flash[:notice] = "you have added a new schedule!"
-      redirect_to homes_path
+      redirect_to root_path
     else
       render :index
     end

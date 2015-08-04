@@ -19,7 +19,7 @@
               <%= f.label :time, "When" %>
               <%= f.time_field( :time ) %>
             </div>
-            <div class="button round">
+            <div class="actions">
               <%= f.submit "Schedule" %>
             </div>
           <% end %>
@@ -31,21 +31,21 @@
     <div class="panel">
       <h2>Current schedule</h2>
       <h3>Hosts-files will be pulled every</h3>
-      <h4>
+      <h2>
         <% if @schedule == nil %>
           No schedule
         <% else %>
-          <%= @schedule.interval %>
+          <%= @schedule.interval_name %>
         <% end %>
-      </h4>
+      </h2>
       <h3>at</h3>
-      <h4>
+      <h2>
         <% if @schedule == nil %>
           No schedule
         <% else %>
-          <%= @schedule.time %>
+          <%= @schedule.time_name %>
         <% end %>
-      </h4>
+      </h2>
     </div>
   </li>
 </ul>

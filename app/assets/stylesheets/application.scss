@@ -19,6 +19,7 @@
 $font:'Ubuntu', sans-serif;
 $pink-color: #FD008E;
 $dark-blue: #1E354B;
+$white: #ffffff;
 
 body{
   text-align: center;
@@ -38,14 +39,9 @@ h3{
   font-family: $font;
 }
 
-button, .button {
-  font-family: $font;
-  background-color: $pink-color;
-}
-
 .head {
   font-size: 4em;
-  color: white;
+  color: $white;
 }
 
 .panel {
@@ -54,7 +50,7 @@ button, .button {
 }
 .panel h1, .panel h3, .panel h5,.panel h6, .panel p, .panel li, .panel dl {
   line-height: 1.5em;
-  color: #ffffff;
+  color: $white;
 }
 
 .panel h2, .panel h4 {
@@ -75,6 +71,25 @@ button, .button {
 }
 
 label {
-  color: #ffffff;
+  color: $white;
   font-size: 1.5em;
 }
+
+.actions input{
+  border:none;
+  border-radius: 1000px;
+  font-family: $font;
+  color: $white;
+  padding-top: 1rem;
+  padding-right: 11rem;
+  padding-bottom: 1.0625rem;
+  padding-left: 11rem;
+  font-size: 1rem;
+  background-color: $pink-color;
+}
+
+.actions:hover, .actions:focus, input:hover, input:focus {
+  background-color: #007095;
+  border-radius: 1000px;
+ }
+

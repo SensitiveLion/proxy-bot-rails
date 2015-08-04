@@ -2,11 +2,29 @@ class Schedule < ActiveRecord::Base
   validates :interval, presence: true
   validates :time, presence: true
 
-  def options_for_interval
-    [
-      ["First Option","first_option"],
-      ["Second Option","second_option"]
-    ]
+  INTERVAL = {
+    ":hour" => "other day",
+    "6.hour" => "six hours",
+    "12.hours" => "twelve hours",
+    ":day" => "day",
+    "2.days" => "other day",
+    "3.days" => "three days",
+    "4.days" => "four day",
+    "5.days" => "five day",
+    ":week" => "week",
+    ":weekend" => "weekend",
+    ":weekday" => "weekday"
+  }
+
+  def interval_name
+    INTERVAL[interval]
+  end
+
+  def time_name
+    date_time = time.to_s
+    time_zone = date_time.gsub(/2000-01-01\s/,"")
+    parsed_time = time_zone.gsub(/:00\sUTC/,"")
+    return parsed_time
   end
 end
 
