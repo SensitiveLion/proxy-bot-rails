@@ -53,3 +53,5 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails'
 gem 'whenever', :require => false
+gem "mechanize"
+gem "nokogiri"

@@ -4,7 +4,7 @@ class Schedule < ActiveRecord::Base
 
   INTERVAL = {
     ":hour" => "other day",
-    "6.hour" => "six hours",
+    "6.hours" => "six hours",
     "12.hours" => "twelve hours",
     ":day" => "day",
     "2.days" => "other day",
