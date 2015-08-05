@@ -1,10 +1,10 @@
-require "pry"
-require "mechanize"
-require "nokogiri"
-require "open-uri"
-
 class Scraper < ActiveRecord::Base
   validates :hosts_files, presence: true
+
+  require "pry"
+  require "mechanize"
+  require "nokogiri"
+  require "open-uri"
 
   def scrape
     count = 32
