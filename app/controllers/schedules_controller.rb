@@ -14,32 +14,6 @@ class SchedulesController < ApplicationController
     end
   end
 
-  def edit
-    @schedule = Schedule.find(params[:id])
-  end
-
-  def update
-    @schedule = Schedule.find(params[:id])
-    if @schedule.update(schedule_params)
-      flash[:notice] = "you have successfully edited the schedule!"
-      redirect_to @schedule
-    else
-      flash[:notice] = "failed to update schedule"
-      render :index
-    end
-  end
-
-  def destroy
-    if current_user.has_authority?
-      @schedule = Schedule.find(params[:id])
-    else
-      @schedule = Schedule.find_by!(user: current_user, id: params[:id])
-    end
-    @schedule.destroy
-    flash[:notice] = 'schedule deleted.'
-    redirect_to root_path
-  end
-
   def schedule_params
     params.require(:schedule).permit(:interval, :time)
   end
