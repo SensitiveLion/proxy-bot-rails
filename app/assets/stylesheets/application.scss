@@ -75,7 +75,7 @@ label {
   font-size: 1.5em;
 }
 
-.actions input{
+.actions input {
   border:none;
   border-radius: 1000px;
   font-family: $font;
@@ -93,3 +93,6 @@ label {
   border-radius: 1000px;
  }
 
+.panel .hosts {
+  text-align: left;
+}
