@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :schedules, only: [:index, :create]
-  resources :scrapers, only: [:index, :create]
+  resources :scrapers, only: [:index, :new]
 end

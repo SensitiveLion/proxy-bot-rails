@@ -19,6 +19,7 @@
 $font:'Ubuntu', sans-serif;
 $pink-color: #FD008E;
 $dark-blue: #1E354B;
+$light-blue: #498AF3;
 $white: #ffffff;
 
 body{
@@ -95,4 +96,21 @@ label {
 
 .panel .hosts {
   text-align: left;
+}
+
+a {
+  font-family: $font;
+  font-size: 2em;
+}
+
+a:link {
+  color: $pink-color;
+}
+
+a:visited {
+  color: $pink-color;
+}
+
+a:hover {
+  color: $light-blue;
 }
