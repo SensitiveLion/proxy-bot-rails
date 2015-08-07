@@ -3,10 +3,9 @@ class Schedule < ActiveRecord::Base
   validates :time, presence: true
 
   INTERVAL = {
-    ":hour" => "other day",
     "6.hours" => "six hours",
     "12.hours" => "twelve hours",
-    ":day" => "day",
+    "1.day" => "day",
     "2.days" => "other day",
     "3.days" => "three days",
     "4.days" => "four day",
@@ -25,6 +24,14 @@ class Schedule < ActiveRecord::Base
     time_zone = date_time.gsub(/2000-01-01\s/,"")
     parsed_time = time_zone.gsub(/:00\sUTC/,"")
     return parsed_time
+  end
+
+  def scheduling
+    schedule = Schedule.last
+    interval = schedule.interval
+    time = schedule.time_name
+
+    return interval, time
   end
 end
 

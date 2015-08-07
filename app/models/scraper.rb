@@ -6,6 +6,7 @@ class Scraper < ActiveRecord::Base
   require "nokogiri"
   require "open-uri"
 
+
   def scrape
     count = 32
 
@@ -44,5 +45,10 @@ class Scraper < ActiveRecord::Base
       end
     end
     return @hosts_file
+  end
+
+  def auto_scrape
+    hosts = Scraper.new.scrape.join("<br>").html_safe
+    Scraper.create(hosts_files: hosts)
   end
 end

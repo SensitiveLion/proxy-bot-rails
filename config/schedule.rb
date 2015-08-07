@@ -18,6 +18,19 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-require "pry"
-thing = Schedule.all
-binding.pry
+every 1.hour do
+  runner "Schedule.scheduling"
+  if interval = "6.hours" || interval = "12.hours"
+    schedule = interval
+    return schedule
+  else
+    schedule = "#{interval}, :at => #{time}"
+    return schedule
+  end
+end
+
+
+
+every schedule thing do
+  runner "Scraper.auto_scrape"
+end
