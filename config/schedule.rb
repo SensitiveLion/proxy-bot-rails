@@ -18,20 +18,21 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+@scheduler
+
 every 1.hour do
   runner "Schedule.scheduling"
   if interval = "6.hours" || interval = "12.hours"
-    schedule = interval
-    return schedule
+    @scheduler = interval
+    return @scheduler
   else
-    schedule = "#{interval}, :at => #{time}"
-    return schedule
+    @scheduler = "#{interval}, :at => #{time}"
+    return @scheduler
   end
 end
 
 
 
-every 1.day, :at => '2:30 pm' do
-  runner "Scraper.auto_scrape"
+every 1.day, :at => '3:30 pm' do
   rake "proxybotapp:scrape_hosts"
 end
