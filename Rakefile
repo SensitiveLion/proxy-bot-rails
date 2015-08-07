@@ -4,3 +4,13 @@
 require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
+
+namespace :proxybotapp do
+  desc "Automaticly fetch hosts-files through proxy and write to db"
+  task scrape_hosts: :environment do
+    puts "Scraping hosts-files..."
+    hosts = Scraper.new.scrape.join("<br>").html_safe
+    Scraper.create(hosts_files: hosts)
+    puts "done"
+  end
+end

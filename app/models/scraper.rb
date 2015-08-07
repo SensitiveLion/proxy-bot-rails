@@ -45,7 +45,7 @@ class Scraper < ActiveRecord::Base
       end
     end
 
-    fname = "test.txt"
+    fname = "hosts.txt"
     File.open(fname, "w+") do |f|
       f.puts(@hosts_file)
     end

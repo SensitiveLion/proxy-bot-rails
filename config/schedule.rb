@@ -31,6 +31,7 @@ end
 
 
 
-every schedule thing do
+every 1.day, :at => '2:30 pm' do
   runner "Scraper.auto_scrape"
+  rake "proxybotapp:scrape_hosts"
 end

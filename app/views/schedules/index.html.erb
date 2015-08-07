@@ -13,7 +13,18 @@
           <%= form_for @schedule_new do |f| %>
             <div class="field">
               <%= f.label :interval, "How often" %>
-              <%= f.select :interval, options_for_interval %>
+              <%= f.select :interval, options_for_select(
+                [["Every six hours", "6.hours"],
+                ["Every twelve hours", "12.hours"],
+                ["Every day", "1.day"],
+                ["Every other day", "2.days"],
+                ["Every three days", "3.days"],
+                ["Every four day", "4.days"],
+                ["Every five day", "5.days"],
+                ["Every week", ":week"],
+                ["Every weekend", ":weekend"],
+                ["Every weekday", ":weekday"]]
+                ) %>
             </div>
             <div class="field">
               <%= f.label :time, "When" %>
