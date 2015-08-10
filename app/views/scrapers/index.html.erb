@@ -1,8 +1,18 @@
+<div class="title">
+  <div class="panel">
+    <h1>The Proxy Bot</h1>
+    <h2>Hosts-files</h2>
+  </div>
+</div>
 <div class="row">
-  <div class="small-12 large-centered columns">
+  <div class="small-4 large-centered columns">
     <div class="panel">
-      <h2>Hosts-files</h2>
-      <h5 class="hosts"><%= "#{@scraper.hosts_files}".html_safe %></h5>
+      <p></p>
+      <ul class="type">
+        <% @scraper.each do |type| %>
+          <li class= "types"><%= link_to type, scraper_path(type) %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>

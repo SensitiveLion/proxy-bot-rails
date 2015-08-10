@@ -1,10 +1,14 @@
 class ScrapersController < ApplicationController
   def index
-    @scraper = Scraper.last
+    @scraper = ["ad_servers", "malware", "exploit", "fraud", "spam", "hpspam",
+                "hijacked", "misleading", "illegal_pharma", "phishing", "piracy"]
+  end
+
+  def show
+    @name = Scraper.where(name: params[:id]).last
   end
 
   def new
-    hosts = Scraper.new.scrape.join("<br>").html_safe
-    Scraper.create(hosts_files: hosts)
+    Scraper.new.scrape
   end
 end

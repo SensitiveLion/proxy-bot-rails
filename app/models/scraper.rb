@@ -24,37 +24,33 @@ class Scraper < ActiveRecord::Base
       proxy_form = proxy.forms.last
     end
 
-    files = ["ad_servers", "emd", "exp", "fsa", "grm", "hfs", "hjk", "mmt", "pha",
-              "psh", "wrz"]
+    files = {ad_servers: "ad_servers", malware: "emd", exploit: "exp",
+            fraud: "fsa", spam: "grm", hpspam: "hfs", hijacked: "hjk",
+            misleading: "mmt", illegal_pharma:"pha", phishing: "psh",
+            piracy: "wrz"}
 
-    @hosts_file = []
 
-    files.each do |type|
-      proxy_form.q = "http://hosts-file.net/#{type}.txt"
+
+    files.each do |key, value|
+      @compile = []
+
+      proxy_form.q = "http://hosts-file.net/#{value}.txt"
       proxy = agent.submit(proxy_form)
       doc = Nokogiri::HTML(open(proxy.uri.to_s))
       doc_text_full = doc.css("p").to_s
       doc_text_parse = doc_text_full.gsub(/^<p>.*\n.*\n.*\n.*\n.*\n.*\n.*\n.*\n.*\n/, '')
       doc_text_end_parse = doc_text_parse.gsub(/# Hosts:.*\n<\/p>/,'')
       doc_text_ad_parse = doc_text_end_parse.gsub(/#\r\n/,'')
-      doc_text = doc_text_ad_parse.gsub(/\t/,"&nbsp; &nbsp; &nbsp; &nbsp;")
+      doc_text = doc_text_ad_parse.gsub(/127.0.0.1\t/,'')
       text = doc_text.split("\r\n")
 
       text.each do |t|
-        @hosts_file << t
+        @compile << t
       end
+
+      hosts = @compile.join("<br>").html_safe
+      name = key.to_s
+      Scraper.create(name: name, hosts_files: hosts)
     end
-
-    fname = "hosts.txt"
-    File.open(fname, "w+") do |f|
-      f.puts(@hosts_file)
-    end
-
-    return @hosts_file
-  end
-
-  def auto_scrape
-    hosts = Scraper.new.scrape.join("<br>").html_safe
-    Scraper.create(hosts_files: hosts)
   end
 end

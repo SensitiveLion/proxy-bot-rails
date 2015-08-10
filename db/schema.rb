@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150805193157) do
   end
 
   create_table "scrapers", force: :cascade do |t|
+    t.string   "name",        null: false
     t.text     "hosts_files", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
