@@ -4,15 +4,15 @@
     <h2>Hosts-files</h2>
   </div>
 </div>
-<div class="row">
-  <div class="small-4 large-centered columns">
-    <div class="panel">
-      <p></p>
-      <ul class="type">
-        <% @scraper.each do |type| %>
-          <li class= "types"><%= link_to type, scraper_path(type) %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
+
+<ul class="small-block-grid-3">
+  <% @scraper.each do |type| %>
+    <li>
+      <div class="panel">
+        <%= link_to type, scraper_path(type) %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+

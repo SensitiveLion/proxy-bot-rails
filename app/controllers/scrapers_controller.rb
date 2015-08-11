@@ -10,5 +10,6 @@ class ScrapersController < ApplicationController
 
   def new
     Scraper.new.scrape
+    redirect_to scrapers_path
   end
 end
