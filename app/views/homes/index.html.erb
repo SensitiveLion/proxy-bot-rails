@@ -1,0 +1,29 @@
+<div class="title">
+  <div class="panel">
+    <h1>The Proxy Bot</h1>
+    <h2>Schedule a bot to keep your hosts files up to date</h2>
+  </div>
+</div>
+<ul class="large-block-grid-2">
+  <li>
+    <div class="panel">
+      <h2>Hosts-files were last updated at</h2>
+      <h3><%= @scraped %></h3>
+    </div>
+  </li>
+  <li>
+    <div class="panel">
+      <%= link_to "Create", new_scraper_path %>
+    </div>
+  </li>
+  <li>
+    <div class="panel">
+      <%= link_to "View Hosts-files", scrapers_path %>
+    </div>
+  </li>
+  <li>
+    <div class="panel">
+      <%= link_to "Schedule", schedules_path %>
+    </div>
+  </li>
+</ul>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'schedules#index'
+  root 'homes#index'
   devise_for :users
 
   resources :schedules, only: [:index, :create]
