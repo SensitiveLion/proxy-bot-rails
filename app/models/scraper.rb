@@ -1,7 +1,6 @@
 class Scraper < ActiveRecord::Base
   validates :hosts_files, presence: true
 
-  require "pry"
   require "mechanize"
   require "nokogiri"
   require "open-uri"
@@ -48,7 +47,7 @@ class Scraper < ActiveRecord::Base
         @compile << t
       end
 
-      hosts = @compile.join("<br>").html_safe
+      hosts = @compile.join("\n").html_safe
       name = key.to_s
       Scraper.create(name: name, hosts_files: hosts)
     end
