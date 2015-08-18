@@ -1,68 +1,56 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Proxy Bot</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= csrf_meta_tags %>
-  <%= favicon_link_tag '/favicon.ico' %>
-</head>
-<body>
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">Proxy Bot</a></h1>
+  <head>
+    <title>Proxy Bot</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag '/favicon.ico' %>
+  </head>
+  <body>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">Proxy Bot</a></h1>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="title">
+      <div class="panel">
+        <h1>The Proxy Bot</h1>
+        <h2>Schedule a bot to keep your hosts files up to date</h2>
+      </div>
+    </div>
+    <ul class="large-block-grid-2">
+      <li>
+        <div class="panel">
+          <h2>Hosts-files were last updated at</h2>
+          <h3><%= @scraped %></h3>
+        </div>
+      </li>
+      <li>
+        <div class="panel">
+          <%= link_to "View Hosts-files", scrapers_path %>
+        </div>
+      </li>
+      <li>
+        <div class="panel">
+          <%= link_to "Create", new_scraper_path %>
+        </div>
+      </li>
+      <li>
+        <div class="panel">
+          <%= link_to "Schedule", schedules_path %>
+        </div>
       </li>
     </ul>
 
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
-      </ul>
-    </section>
-  </nav>
-
-
-<div class="title">
-  <div class="panel">
-    <h1>The Proxy Bot</h1>
-    <h2>Schedule a bot to keep your hosts files up to date</h2>
-  </div>
-</div>
-<ul class="large-block-grid-2">
-  <li>
-    <div class="panel">
-      <h2>Hosts-files were last updated at</h2>
-      <h3><%= @scraped %></h3>
-    </div>
-  </li>
-  <li>
-    <div class="panel">
-      <%= link_to "Create", new_scraper_path %>
-    </div>
-  </li>
-  <li>
-    <div class="panel">
-      <%= link_to "View Hosts-files", scrapers_path %>
-    </div>
-  </li>
-  <li>
-    <div class="panel">
-      <%= link_to "Schedule", schedules_path %>
-    </div>
-  </li>
-</ul>
-
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
-    </div>
-  <%- end -%>
-  <%= javascript_include_tag 'application' %>
-  <%= yield :extra_footer %>
-</body>
+    <%- flash.each do |key, value| -%>
+      <div class="flash flash-<%= key %>">
+        <%= value %>
+      </div>
+    <%- end -%>
+    <%= javascript_include_tag 'application' %>
+    <%= yield :extra_footer %>
+  </body>
 </html>
