@@ -1,1 +1,28 @@
-<%= yield %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Proxy Bot</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag '/favicon.ico' %>
+  </head>
+  <body>
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">Proxy Bot</a></h1>
+        </li>
+      </ul>
+    </nav>
+
+    <%= yield %>
+
+    <%- flash.each do |key, value| -%>
+      <div class="flash flash-<%= key %>">
+        <%= value %>
+      </div>
+    <%- end -%>
+    <%= javascript_include_tag 'application' %>
+    <%= yield :extra_footer %>
+  </body>
+</html>

@@ -5,7 +5,7 @@ class ScrapersController < ApplicationController
   end
 
   def show
-    @name = Scraper.where(name: params[:id]).last
+    render file: "text_files/#{params["id"]}.txt",  content_type: 'text/plain'
   end
 
   def new
