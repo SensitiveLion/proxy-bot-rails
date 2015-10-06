@@ -1,43 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Proxy Bot</title>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= csrf_meta_tags %>
-    <%= favicon_link_tag '/favicon.ico' %>
-  </head>
-  <body>
-    <nav class="top-bar">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="/">Proxy Bot</a></h1>
-        </li>
-      </ul>
-    </nav>
+<div class="title">
+  <div class="panel">
+    <h1>The Proxy Bot</h1>
+    <h2>Hosts-files</h2>
+  </div>
+</div>
 
-    <div class="title">
+<ul class="small-block-grid-3">
+  <% @scraper.each do |type| %>
+    <li>
       <div class="panel">
-        <h1>The Proxy Bot</h1>
-        <h2>Hosts-files</h2>
+        <%= link_to type, scraper_path(type) + ".txt" %>
       </div>
-    </div>
-
-    <ul class="small-block-grid-3">
-      <% @scraper.each do |type| %>
-        <li>
-          <div class="panel">
-            <%= link_to type, scraper_path(type) %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-
-      <%- flash.each do |key, value| -%>
-        <div class="flash flash-<%= key %>">
-          <%= value %>
-        </div>
-      <%- end -%>
-      <%= javascript_include_tag 'application' %>
-      <%= yield :extra_footer %>
-  </body>
-</html>
+    </li>
+  <% end %>
+</ul>

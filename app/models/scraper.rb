@@ -12,8 +12,13 @@ class Scraper < ActiveRecord::Base
     agent = Mechanize.new
     proxy = agent.get("http://www.proxy4free.com/list/webproxy1.html")
     link = proxy.links[count]
+    if link.uri.to_s == ""
+      count -= 1
+      link = proxy.links[count]
+    end
     proxy = link.click
     proxy_form = proxy.forms.last
+    print "."
 
     until proxy.form.field.name == "q"
       count += 3
@@ -21,6 +26,7 @@ class Scraper < ActiveRecord::Base
       link = proxy.links[count]
       proxy = link.click
       proxy_form = proxy.forms.last
+      print "."
     end
 
     files = {ad_servers: "ad_servers", malware: "emd", exploit: "exp",
@@ -29,12 +35,11 @@ class Scraper < ActiveRecord::Base
             piracy: "wrz"}
 
 
-
     files.each do |key, value|
-      @compile = []
-
+      @hosts_file = []
       proxy_form.q = "http://hosts-file.net/#{value}.txt"
       proxy = agent.submit(proxy_form)
+      print "."
       doc = Nokogiri::HTML(open(proxy.uri.to_s))
       doc_text_full = doc.css("p").to_s
       doc_text_parse = doc_text_full.gsub(/^<p>.*\n.*\n.*\n.*\n.*\n.*\n.*\n.*\n.*\n/, '')
@@ -44,12 +49,16 @@ class Scraper < ActiveRecord::Base
       text = doc_text.split("\r\n")
 
       text.each do |t|
-        @compile << t
+        @hosts_file << t
       end
 
-      hosts = @compile.join("\n").html_safe
-      name = key.to_s
-      Scraper.create(name: name, hosts_files: hosts)
+      fname = "text_files/#{key.to_s}.txt"
+      File.open(fname, "w+") do |f|
+        f.puts(@hosts_file)
+      end
+      print "."
     end
+
+    Scraper.create(name: "updated", hosts_files: "hosts files now in text files")
   end
 end
