@@ -1,12 +1,25 @@
 <div class="title">
   <div class="panel">
     <h1>The Proxy Bot</h1>
-    <h2>Hosts-files</h2>
   </div>
 </div>
-
+<div class="panel">
+  <h2>Host_files.net</h2>
+</div>
 <ul class="small-block-grid-3">
   <% @scraper.each do |type| %>
+    <li>
+      <div class="panel">
+        <%= link_to type, scraper_path(type) + ".txt" %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<div class="panel">
+  <h2>Malware Domain List</h2>
+</div>
+<ul class="small-block-grid-2">
+  <% @malware.each do |type| %>
     <li>
       <div class="panel">
         <%= link_to type, scraper_path(type) + ".txt" %>
