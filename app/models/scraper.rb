@@ -7,7 +7,7 @@ class Scraper < ActiveRecord::Base
 
 
   def scrape
-    count = 32
+    count = 33
 
     agent = Mechanize.new
     proxy = agent.get("http://www.proxy4free.com/list/webproxy1.html")
