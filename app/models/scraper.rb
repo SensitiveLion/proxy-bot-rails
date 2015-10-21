@@ -56,7 +56,7 @@ class Scraper < ActiveRecord::Base
       File.open(fname, "w+") do |f|
         f.puts(@hosts_file)
       end
-      print "."
+      print ""
     end
 
     @hosts_file = []
@@ -98,7 +98,5 @@ class Scraper < ActiveRecord::Base
     end
 
     Scraper.create(name: "updated", hosts_files: "hosts files now in text files")
-
-
   end
 end
