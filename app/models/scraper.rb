@@ -12,7 +12,7 @@ class Scraper < ActiveRecord::Base
     agent = Mechanize.new
     proxy = agent.get("http://www.proxy4free.com/list/webproxy1.html")
     link = proxy.links[count]
-    if link.uri.to_s == ""
+    until link.uri.to_s != "" and link.text != ""
       count -= 1
       link = proxy.links[count]
     end
